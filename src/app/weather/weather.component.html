@@ -1,0 +1,61 @@
+<h1 class=text-center>Weather App</h1>
+
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-4">
+      <form
+        [formGroup]="weatherSearchForm"
+        (ngSubmit)="sendToAPIXU(weatherSearchForm.value)"
+      >
+        <input
+          class="inputText"
+          type="text"
+          id="weatherLocation"
+          placeholder="Enter Location"
+          formControlName="location"
+        />
+
+        <button type="submit" class="btn btn-outline-success">
+          Get Weather
+        </button>
+      </form>
+    </div>
+
+    <div class="col-md-6">
+      <div class="weather-card">
+        <table class="table table-bordered" id="excel-table">
+          <tr>
+            <th>Location</th>
+            <th>Country</th>
+            <th>Weather Description</th>
+            
+            <th>Temperature(°C)</th>
+            <th>Humidity(°C)</th>
+          </tr>
+
+          <tr>
+            <td>{{ this.weatherData?.location.name }}</td>
+            <td>{{ this.weatherData?.location.country }}</td>
+            <td>{{ this.weatherData?.current.weather_descriptions }}<img
+              class="img-fluid"
+              height="100px"
+              src="{{ this.weatherData?.current.weather_icons }}"
+            /></td>
+            <td>{{ this.weatherData?.current.temperature }}</td>
+            <td>{{ this.weatherData?.current.humidity }}</td>
+            
+          
+          </tr>
+        </table>
+       
+      </div>
+    </div>
+
+    <div class="col-md-2 text-right">
+      <button type="submit" class="btn btn-danger my-2" (click)="openCSV()">
+        Download as Excel
+      </button>
+    </div>
+  </div>
+</div>
